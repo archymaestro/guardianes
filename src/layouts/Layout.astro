@@ -71,7 +71,9 @@ const {
 		</script>
 	</head>
 	<body>
-		<slot />
+		<div class="site-wrapper">
+			<slot />
+		</div>
 	</body>
 </html>
 
@@ -101,6 +103,8 @@ const {
 
 	html, body {
 		height: 100%;
+		width: 100%;
+		max-width: 100%;
 		font-family: var(--font-body);
 		background-color: var(--bg-dark);
 		color: var(--text-primary);
@@ -108,9 +112,20 @@ const {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		overflow-x: hidden;
+		position: relative;
 	}
 
 	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	.site-wrapper {
+		width: 100%;
+		max-width: 100%;
+		overflow-x: hidden;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
