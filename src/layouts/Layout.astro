@@ -1,0 +1,160 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	url?: string;
+	image?: string;
+}
+
+const { 
+	title, 
+	description, 
+	url = "https://clicaqui.co/", 
+	image = "https://clicaqui.co/og-image.png" 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={url} />
+
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		<meta property="og:site_name" content="Guardianes de la Democracia" />
+		<meta property="og:locale" content="es_CO" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet" />
+
+		<!-- Schema.org JSON-LD Structured Data -->
+		<script type="application/ld+json" is:inline>
+			{
+				"@context": "https://schema.org",
+				"@type": "WebPage",
+				"name": "Guardianes de la Democracia",
+				"description": "Estamos uniendo esfuerzos para denunciar la mayor cantidad posible de irregularidades electorales. Registra y carga los E-14 de los puestos y mesas de votación.",
+				"url": "https://clicaqui.co/",
+				"inLanguage": "es-CO",
+				"publisher": {
+					"@type": "Organization",
+					"name": "Guardianes de la Democracia Colombia",
+					"logo": {
+						"@type": "ImageObject",
+						"url": "https://clicaqui.co/favicon.svg"
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--bg-dark: #070a13;
+		--bg-dark-hover: #0d1324;
+		--accent-gold: #fcc01a;
+		--accent-blue: #003087;
+		--accent-red: #c8102e;
+		--accent-whatsapp: #25d366;
+		--accent-whatsapp-dark: #128c7e;
+		--text-primary: #f8fafc;
+		--text-muted: #94a3b8;
+		--text-dark: #0f172a;
+		--glow-green: rgba(37, 211, 102, 0.2);
+		--glow-red: rgba(200, 16, 46, 0.2);
+		--font-title: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		--font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	}
+
+	*, *::before, *::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html, body {
+		height: 100%;
+		font-family: var(--font-body);
+		background-color: var(--bg-dark);
+		color: var(--text-primary);
+		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		overflow-x: hidden;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	/* Scrollbar Styling */
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+	::-webkit-scrollbar-track {
+		background: var(--bg-dark);
+	}
+	::-webkit-scrollbar-thumb {
+		background: #1e293b;
+		border-radius: 4px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #334155;
+	}
+
+	/* Micro-animations */
+	@media (prefers-reduced-motion: no-preference) {
+		.animate-fade-in {
+			animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+		}
+
+		.animate-slide-up {
+			animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+		}
+
+		@keyframes fadeIn {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+
+		@keyframes slideUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+</style>
